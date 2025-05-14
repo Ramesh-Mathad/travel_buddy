@@ -1,0 +1,71 @@
+<head>
+    <meta charset="UTF-8">
+    <title>Search Trips</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background: linear-gradient(120deg, #e0eafc, #cfdef3 100%);
+            min-height: 100vh;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+        .container {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+            padding: 40px 30px 30px 30px;
+            margin-top: 60px;
+            max-width: 500px;
+            
+        }
+        h1 {
+            color: #007bff;
+            font-weight: 700;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+        input[type="text"], input[type="date"] {
+            border-radius: 6px;
+            border: 1px solid #ced4da;
+            padding: 10px 14px;
+            font-size: 16px;
+            transition: border-color 0.2s;
+        }
+        input[type="text"]:focus, input[type="date"]:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+        .btn-primary {
+            border-radius: 6px;
+            font-weight: 600;
+            padding: 10px 0;
+            font-size: 17px;
+            letter-spacing: 0.5px;
+        }
+        hr {
+            margin: 32px 0 20px 0;
+        }
+        #results {
+            min-height: 60px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Find a Travel Buddy</h1>
+        <form action="search_results.html" method="GET">
+            <input type="text" name="destination" placeholder="Destination" required>
+            <input type="date" name="start_date" placeholder="Start Date" required>
+            <input type="date" name="end_date" placeholder="End Date">
+            <input type="text" name="interests" placeholder="Interest" required>
+            <button type="submit" class="btn btn-primary">Search</button>
+        </form>
+        <hr>
+        <div id="results"></div>
+    </div>
+</body>
+</html>

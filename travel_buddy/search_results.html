@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Trip Search Results</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background: linear-gradient(120deg, #e0eafc, #cfdef3 100%);
+            min-height: 100vh;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+        .container {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+            padding: 40px 30px 30px 30px;
+            margin-top: 60px;
+            max-width: 600px;
+        }
+        .brand-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            margin-bottom: 18px;
+        }
+        .brand-logo {
+            font-size: 2.1rem;
+            font-weight: bold;
+            color: #007bff;
+            letter-spacing: 2px;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.10);
+            transition: color 0.2s;
+        }
+        
+        h1 {
+            color: #007bff;
+            font-weight: 700;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        #results {
+            min-height: 60px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="brand-link">
+            <span class="brand-logo">Travel Buddy</span>
+        </a>
+        <h1>Trip Search Results</h1>
+        <div id="results"></div>
+    </div>
+    <script>
+        function getQueryParam(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name) || '';
+        }
+
+        const destination = getQueryParam('destination');
+        const start_date = getQueryParam('start_date');
+        const end_date = getQueryParam('end_date');
+        const interests = getQueryParam('interests');
+
+        fetch(`search_results.php?destination=${encodeURIComponent(destination)}&start_date=${encodeURIComponent(start_date)}&end_date=${encodeURIComponent(end_date)}&interests=${encodeURIComponent(interests)}`)
+            .then(res => res.json())
+            .then(data => {
+                const resultsDiv = document.getElementById('results');
+                if (!data.length) {
+                    resultsDiv.innerHTML = '<div class="alert alert-warning">No trips found.</div>';
+                    return;
+                }
+                resultsDiv.innerHTML = data.map(trip => `
+    <div class="card mb-3 shadow-sm">
+        <div class="card-body">
+            <h5 class="card-title">${trip.destination}</h5>
+            <ul class="list-unstyled mb-0">
+                <li><strong>Traveler:</strong> ${trip.username}</li>
+                <li><strong>Email:</strong> <a href="mailto:${trip.email}">${trip.email}</a></li>
+                <li><strong>Phone:</strong> ${trip.phone ? trip.phone : 'Not provided'}</li>
+                <li><strong>Start Date:</strong> ${trip.start_date}</li>
+                <li><strong>End Date:</strong> ${trip.end_date}</li>
+                ${trip.interests ? `<li><strong>Interests:</strong> ${trip.interests}</li>` : ''}
+            </ul>
+        </div>
+    </div>
+`).join('');
+            })
+            .catch(() => {
+                document.getElementById('results').innerHTML = '<div class="alert alert-danger">Error loading results.</div>';
+            });
+    </script>
+</body>
+</html>

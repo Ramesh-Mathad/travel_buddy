@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Buddy Finder</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+        body {
+            background-color: #f4f4f4;
+            color: #232946;
+            line-height: 1.6;
+            font-size: 16px;
+        }
+        /* Header/Nav */
+               /* Header/Nav */
+        header {
+    background: rgba(0,0,0,0.85);
+    padding: 10px 0 8px 0; /* medium vertical padding */
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+.brand {
+    color: #007bff;
+    font-size: 1.5rem; /* medium font size */
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin-left: 16px; /* medium margin */
+    text-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    text-decoration: none;
+}
+header nav ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0 12px 0 0; /* medium horizontal padding */
+}
+header nav ul li {
+    margin: 0 14px; /* medium horizontal margin */
+}
+header nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 17px; /* medium font size */
+    font-weight: 500;
+    padding: 6px 16px; /* medium padding */
+    border-radius: 4px;
+    transition: background 0.25s, color 0.25s;
+}
+header nav ul li a:hover {
+    background: #ff9800;
+    color: #232946;
+}
+        /* Hero Section */
+        .hero {
+            background: url(travelbuddy_register.jpg) no-repeat center center/cover;
+            color: #232946;
+            text-align: center;
+            padding: 110px 20px 90px 20px;
+            background-attachment: fixed;
+            background-size: cover;
+            position: relative;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(255,255,255,0.55);
+            z-index: 1;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        .hero h1 {
+            font-size: 54px;
+            font-weight: 700;
+            margin-bottom: 18px;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.08);
+        }
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 32px;
+            font-weight: 400;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            background: rgba(255,255,255,0.7);
+            border-radius: 8px;
+            padding: 12px 0;
+        }
+        .cta-button {
+            background: linear-gradient(90deg, #007bff 60%, #ff9800 100%);
+            color: #fff;
+            text-decoration: none;
+            padding: 15px 40px;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 30px;
+            transition: background 0.3s, transform 0.3s;
+            box-shadow: 0 2px 12px rgba(0,123,255,0.08);
+            border: none;
+            outline: none;
+            display: inline-block;
+        }
+        .cta-button:hover {
+            background: linear-gradient(90deg, #0056b3 60%, #ff9800 100%);
+            transform: scale(1.05);
+        }
+        /* About Section */
+        .about {
+            background-color: #fff;
+            padding: 70px 20px 60px 20px;
+            text-align: center;
+            border-radius: 0 0 18px 18px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.04);
+            margin-bottom: 30px;
+        }
+        .about h2 {
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 18px;
+            color: #007bff;
+        }
+        .about p {
+            font-size: 18px;
+            color: #666;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        /* Features Section */
+        .features {
+            background-color: #fafafa;
+            padding: 60px 20px 40px 20px;
+            text-align: center;
+        }
+        .features h2 {
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 38px;
+            color: #007bff;
+        }
+        .feature-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 28px;
+        }
+        .feature {
+            flex: 1 1 260px;
+            max-width: 320px;
+            min-width: 220px;
+            padding: 30px 20px;
+            background: rgba(255,255,255,0.95);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            border-radius: 12px;
+            margin: 0 10px 24px 10px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .feature:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 10px 25px rgba(0, 123, 255, 0.10);
+            background: #e9f2ff;
+        }
+        .feature h3 {
+            font-size: 22px;
+            color: #ff9800;
+            margin-bottom: 16px;
+        }
+        .feature p {
+            font-size: 16px;
+            color: #444;
+        }
+        /* Footer */
+        footer {
+            background-color: #232946;
+            color: #fff;
+            padding: 24px 0 10px 0;
+            text-align: center;
+            border-radius: 18px 18px 0 0;
+            margin-top: 40px;
+        }
+        footer p {
+            font-size: 14px;
+        }
+        footer a {
+            color: #ff9800;
+            text-decoration: none;
+            margin-left: 10px;
+            transition: color 0.2s;
+        }
+        footer a:hover {
+            text-decoration: underline;
+            color: #007bff;
+        }
+        /* Responsive */
+        @media (max-width: 900px) {
+            .feature-list {
+                flex-direction: column;
+                align-items: center;
+            }
+            .feature {
+                max-width: 95vw;
+            }
+            .hero h1 {
+                font-size: 36px;
+            }
+            .about h2, .features h2 {
+                font-size: 24px;
+            }
+        }
+        @media (max-width: 600px) {
+            .brand {
+                font-size: 1.3rem;
+                margin-left: 12px;
+            }
+            header nav ul {
+                padding: 0 8px 0 0;
+            }
+            .hero {
+                padding: 60px 8px 40px 8px;
+            }
+            .about, .features {
+                padding: 30px 8px 20px 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <header>
+        <a href="index.html" class="brand">Travel Buddy</a>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="register.html">Register</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="search_trips.html">Find Travel Buddies</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Welcome to Travel Buddy Finder</h1>
+            <p>Your next adventure is just a click away! <br>Find the perfect travel companion and make lasting memories.</br></p>
+            <a href="register.html" class="cta-button">Get Started</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about">
+        <h2>About Us</h2>
+        <p>Travel Buddy Finder connects travelers looking for companions to share their experiences. Whether you’re exploring a new city, hiking in the mountains, or just looking for someone to share your journey, we’ve got you covered.</p>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <h2>Our Features</h2>
+        <div class="feature-list">
+            <div class="feature">
+                <h3>Find Travel Buddies</h3>
+                <p>Search for like-minded travelers who share your destination and interests.</p>
+            </div>
+            <div class="feature">
+                <h3>Message System</h3>
+                <p>Communicate with potential travel companions before the trip begins.</p>
+            </div>
+            <div class="feature">
+                <h3>Rate and Review</h3>
+                <p>Share your experiences and build trust by leaving reviews for your travel buddies.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Travel Buddy Finder | All Rights Reserved</p>
+        <p><a href="terms.html">Terms of Service</a> | <a href="privacy.html">Privacy Policy</a></p>
+    </footer>
+</body>
+</html>

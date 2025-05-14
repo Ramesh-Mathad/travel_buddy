@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <style>
+    body {
+        font-family: 'Segoe UI', Arial, sans-serif;
+        background: linear-gradient(120deg, #e0eafc, #cfdef3 100%);
+        color: #333;
+        margin: 0;
+        padding: 0;
+    }
+    /* Header/Navbar */
+    .main-header {
+        background: #343a40;
+        padding: 0;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    .main-header .nav {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 0 20px;
+        height: 56px;
+    }
+    .main-header .brand {
+        margin-right: auto;
+        color: #fff;
+        font-weight: bold;
+        font-size: 22px;
+        letter-spacing: 1px;
+        text-decoration: none;
+    }
+    .main-header .nav-link {
+        color: #fff;
+        font-weight: 600;
+        padding: 8px 18px;
+        border-radius: 4px;
+        margin-left: 10px;
+        transition: background 0.2s, color 0.2s;
+        text-decoration: none;
+    }
+    .main-header .nav-link:hover, .main-header .nav-link.active {
+        background: #007bff;
+        color: #fff;
+    }
+
+    .container {
+        max-width: 900px;
+        margin: 30px auto 0 auto;
+        padding: 30px 20px;
+        background: rgba(255,255,255,0.97);
+        border-radius: 12px;
+        box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    }
+
+    /* User Info Card */
+    .user-info-card {
+        display: flex;
+        align-items: center;
+        background: #f8f9fa;
+        border-radius: 12px;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+        padding: 24px 28px;
+        margin-bottom: 32px;
+        gap: 28px;
+    }
+    .user-info-card .profile-pic {
+        width: 90px;
+        height: 90px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 3px solid #007bff;
+        box-shadow: 0 2px 8px rgba(0,123,255,0.08);
+    }
+    .user-info-card .user-details h2 {
+        margin: 0 0 8px 0;
+        color: #007bff;
+        font-size: 2rem;
+    }
+    .user-info-card .user-details p {
+        margin: 4px 0;
+        color: #444;
+        font-size: 1rem;
+    }
+
+    h1, h3 {
+        color: #007bff;
+        text-align: center;
+        margin-bottom: 20px;
+        letter-spacing: 1px;
+    }
+
+    label {
+        font-size: 16px;
+        font-weight: bold;
+        margin-bottom: 6px;
+        display: block;
+    }
+
+    input[type="file"], input[type="text"], textarea {
+        width: 100%;
+        padding: 10px 12px;
+        margin: 10px 0 18px 0;
+        border: 1px solid #ced4da;
+        border-radius: 6px;
+        font-size: 16px;
+        background: #f8f9fa;
+        transition: border-color 0.2s;
+    }
+    input[type="file"] {
+        padding: 6px 0;
+    }
+    input[type="text"]:focus, textarea:focus {
+        border-color: #007bff;
+        outline: none;
+        background: #fff;
+    }
+
+    button {
+        background-color: #007bff;
+        color: white;
+        font-size: 16px;
+        padding: 10px 24px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background 0.2s, transform 0.2s;
+        font-weight: 600;
+        margin-top: 8px;
+    }
+    button:hover {
+        background-color: #0056b3;
+        transform: translateY(-2px) scale(1.03);
+        box-shadow: 0 2px 8px rgba(0,123,255,0.08);
+    }
+
+    hr {
+        border: 1px solid #e0e0e0;
+        margin: 32px 0 24px 0;
+    }
+
+    ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    li {
+        background: #f8f9fa;
+        margin: 10px 0;
+        padding: 14px 18px;
+        border-radius: 7px;
+        font-size: 16px;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+        transition: background 0.2s, box-shadow 0.2s;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    li:hover {
+        background: #e9f2ff;
+        box-shadow: 0 2px 8px rgba(0,123,255,0.07);
+    }
+
+    .msg-icon, .view-msg-icon {
+        font-size: 20px;
+        color: #007bff;
+        cursor: pointer;
+        margin-left: 10px;
+        transition: color 0.2s;
+    }
+    .msg-icon:hover, .view-msg-icon:hover {
+        color: #0056b3;
+    }
+
+    /* Card-like section for forms */
+    form {
+        background: #f4f8fb;
+        border-radius: 8px;
+        padding: 20px 18px 10px 18px;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+        margin-bottom: 18px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .container {
+            padding: 10px;
+        }
+        h1 {
+            font-size: 24px;
+        }
+        h3 {
+            font-size: 20px;
+        }
+        button {
+            font-size: 14px;
+            padding: 8px 16px;
+        }
+        .main-header .nav {
+            flex-direction: column;
+            height: auto;
+            padding: 10px 0;
+        }
+        .main-header .brand {
+            margin-bottom: 8px;
+        }
+        .user-info-card {
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 16px 10px;
+            gap: 12px;
+        }
+        .user-info-card .profile-pic {
+            width: 70px;
+            height: 70px;
+        }
+    }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <nav class="nav">
+            <a href="index.html" class="brand">Travel Buddy</a>
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="reviews.html" class="nav-link">Reviews</a>
+        </nav>
+    </header>
+    <div class="container">
+        <!-- User Info Card -->
+        <div class="user-info-card">
+            <img class="profile-pic" id="profile-pic" src="default_profile.jpg" alt="Profile Picture">
+            <div class="user-details">
+                <h2 id="profile-username">Username</h2>
+                <p id="profile-email">user@email.com</p>
+                <p id="profile-join-date"><strong>Joined:</strong> <span>2024-01-01</span></p>
+                <p id="profile-bio"><strong>Bio:</strong> Adventurous traveler and foodie!</p>
+                <p id="profile-total-trips"><strong>Total Trips:</strong> <span>0</span></p>
+            </div>
+        </div>
+
+        <h1>User Profile</h1>
+        
+        <!-- Profile picture upload form -->
+        <form action="upload_profile.php" method="post" enctype="multipart/form-data">
+            <label for="profile_picture">Upload Profile Picture:</label>
+            <input type="file" name="profile_picture" id="profile_picture" required>
+            <button type="submit">Upload</button>
+        </form>
+        
+        <hr>
+
+        <!-- Upcoming trips section -->
+        <h3>Upcoming Trips</h3>
+        <ul id="trips-list">
+            <!-- List of trips will be populated here -->
+        </ul>
+
+        <hr>
+
+        <!-- Send message request form -->
+        <h3>Send a Message Request</h3>
+        <form action="send_message_request.php" method="post">
+            <label for="recipient">Recipient:</label>
+            <input type="text" id="recipient" name="recipient" placeholder="Enter recipient username" required>
+
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" rows="4" placeholder="Enter your message" required></textarea>
+
+            <button type="submit">Send Request</button>
+        </form>
+
+        <hr>
+
+        <!-- Sent message requests section -->
+        <h3>Sent Message Requests</h3>
+        <ul id="message-requests-list">
+            <!-- List of message requests will be populated here -->
+        </ul>
+
+        <!-- Received message requests section -->
+        <h3>Received Message Requests</h3>
+        <ul id="received-message-requests-list">
+            <!-- Received message requests will be populated here -->
+        </ul>
+    </div>
+
+    <script>
+        // Fetch user info (replace with your actual endpoint or JS logic)
+        fetch('fetch_user_info.php')
+            .then(response => response.json())
+            .then(user => {
+                document.getElementById('profile-username').textContent = user.username;
+                document.getElementById('profile-email').textContent = user.email;
+                document.getElementById('profile-join-date').querySelector('span').textContent = user.join_date;
+                document.getElementById('profile-bio').innerHTML = "<strong>Bio:</strong> " + (user.bio || "No bio set.");
+                document.getElementById('profile-total-trips').querySelector('span').textContent = user.total_trips || 0;
+                document.getElementById('profile-pic').src = user.profile_picture || 'default_profile.jpg';
+            });
+
+        // Fetching upcoming trips via JavaScript
+        fetch('fetch_trips.php')
+            .then(response => response.json())
+            .then(data => {
+                let tripsList = document.getElementById('trips-list');
+                if (data.length > 0) {
+                    data.forEach(trip => {
+                        let li = document.createElement('li');
+                        li.textContent = `${trip.destination} - ${trip.start_date} to ${trip.end_date}`;
+                        tripsList.appendChild(li);
+                    });
+                } else {
+                    let li = document.createElement('li');
+                    li.textContent = 'No upcoming trips available.';
+                    tripsList.appendChild(li);
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching trips:', error);
+                let tripsList = document.getElementById('trips-list');
+                let li = document.createElement('li');
+                li.textContent = 'Failed to load trips. Please try again later.';
+                tripsList.appendChild(li);
+            });
+
+        // Fetching sent message requests via JavaScript
+        fetch('fetch_message_requests.php')
+            .then(response => response.json())
+            .then(data => {
+                let msgList = document.getElementById('message-requests-list');
+                if (data.length > 0) {
+                    data.forEach(msg => {
+                        let li = document.createElement('li');
+                        li.innerHTML = `${msg.recipient} - ${msg.message} <span class="view-msg-icon" onclick="viewMessage(${msg.id})">📧</span>`;
+                        msgList.appendChild(li);
+                    });
+                } else {
+                    let li = document.createElement('li');
+                    li.textContent = 'No sent message requests.';
+                    msgList.appendChild(li);
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching message requests:', error);
+                let msgList = document.getElementById('message-requests-list');
+                let li = document.createElement('li');
+                li.textContent = 'Failed to load message requests. Please try again later.';
+                msgList.appendChild(li);
+            });
+
+        // Fetching received message requests via JavaScript
+        fetch('fetch_received_message_requests.php')
+            .then(response => response.json())
+            .then(data => {
+                let receivedList = document.getElementById('received-message-requests-list');
+                if (data.length > 0) {
+                    data.forEach(msg => {
+                        let li = document.createElement('li');
+                        li.innerHTML = `
+                            <div>
+                                <strong>From:</strong> ${msg.sender} <br>
+                                <strong>Message:</strong> ${msg.message} <br>
+                                <strong>Status:</strong> <span id="status-${msg.id}">${msg.status}</span>
+                            </div>
+                            ${msg.status === 'Pending' ? `
+                                <button onclick="updateMessageStatus(${msg.id}, 'Accepted')">Accept</button>
+                                <button onclick="updateMessageStatus(${msg.id}, 'Rejected')">Reject</button>
+                            ` : ''}
+                        `;
+                        receivedList.appendChild(li);
+                    });
+                } else {
+                    let li = document.createElement('li');
+                    li.textContent = 'No received message requests.';
+                    receivedList.appendChild(li);
+                }
+            })
+            .catch(error => {
+                let receivedList = document.getElementById('received-message-requests-list');
+                let li = document.createElement('li');
+                li.textContent = 'Failed to load received message requests.';
+                receivedList.appendChild(li);
+            });
+
+        // Function to update message status
+        function updateMessageStatus(msgId, status) {
+            fetch('accept_reject_message.php', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                body: `message_id=${msgId}&status=${status}`
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    document.getElementById(`status-${msgId}`).textContent = status;
+                } else {
+                    alert('Failed to update status.');
+                }
+            });
+        }
+
+        // Function to navigate to view messages page
+        function viewMessage(msgId) {
+            window.location.href = `view_message.php?message_id=${msgId}`;
+        }
+    </script>
+</body>
+</html>

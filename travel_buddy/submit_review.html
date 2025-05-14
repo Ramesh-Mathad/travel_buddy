@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Submit Review</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            min-height: 100vh;
+            background: linear-gradient(120deg, #e0eafc, #cfdef3 100%);
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 6px 32px rgba(0,0,0,0.12);
+            padding: 40px 32px 32px 32px;
+            max-width: 420px;
+            width: 100%;
+            margin-top: 40px;
+        }
+        h1 {
+            color: #007bff;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 18px;
+        }
+        .quote {
+            font-style: italic;
+            color: #555;
+            text-align: center;
+            margin-bottom: 28px;
+            font-size: 1.1rem;
+        }
+        .form-group label {
+            font-weight: 600;
+            color: #232946;
+        }
+        input[type="number"], textarea {
+            border-radius: 6px !important;
+            border: 1px solid #ced4da;
+            padding: 10px 14px;
+            font-size: 16px;
+            transition: border-color 0.2s;
+        }
+        input[type="number"]:focus, textarea:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+        .btn-primary {
+            border-radius: 6px;
+            font-weight: 600;
+            padding: 10px 0;
+            font-size: 17px;
+            letter-spacing: 0.5px;
+            width: 100%;
+            margin-top: 10px;
+            box-shadow: 0 2px 8px rgba(0,123,255,0.08);
+            transition: background 0.2s, transform 0.2s;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px) scale(1.03);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Submit a Review</h1>
+        <div class="quote">
+            "Travel is the only thing you buy that makes you richer. Share your experience and inspire others!"
+        </div>
+        <form action="submit_review.php" method="POST">
+            <input type="hidden" name="reviewed_user_id" value="2"> <!-- Example User ID -->
+            <div class="form-group">
+                <label for="rating">Rating (1-5):</label>
+                <input type="number" name="rating" id="rating" min="1" max="5" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="comments">Comments:</label>
+                <textarea name="comments" id="comments" class="form-control" rows="4" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit Review</button>
+        </form>
+    </div>
+</body>
+</html>
