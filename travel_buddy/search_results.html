@@ -78,8 +78,6 @@
             <h5 class="card-title">${trip.destination}</h5>
             <ul class="list-unstyled mb-0">
                 <li><strong>Traveler:</strong> ${trip.username}</li>
-                <li><strong>Email:</strong> <a href="mailto:${trip.email}">${trip.email}</a></li>
-                <li><strong>Phone:</strong> ${trip.phone ? trip.phone : 'Not provided'}</li>
                 <li><strong>Start Date:</strong> ${trip.start_date}</li>
                 <li><strong>End Date:</strong> ${trip.end_date}</li>
                 ${trip.interests ? `<li><strong>Interests:</strong> ${trip.interests}</li>` : ''}
